@@ -1,0 +1,15 @@
+.wrapper {
+  padding: 2rem;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.heading {
+  color: #111827;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.text {
+  color: #4b5563;
+}
