@@ -1,0 +1,44 @@
+.card {
+  background-color: #ffffff;
+  border-radius: 0.6rem;
+  padding: 1.2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  color: #111827;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.name {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #1e3a8a;
+}
+
+.progressBar,
+.budgetBar {
+  background-color: #e5e7eb;
+  border-radius: 0.4rem;
+  height: 8px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: #10b981;
+  height: 100%;
+}
+
+.budgetFill {
+  background-color: #3b82f6;
+  height: 100%;
+}
+
+.progressText {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
