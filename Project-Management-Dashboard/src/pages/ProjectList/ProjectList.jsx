@@ -10,11 +10,9 @@ export default function ProjectList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Read filters from URL
   const statusFilter = searchParams.get("status");
   const departmentFilter = searchParams.get("department");
 
-  // Filter projects by URL params
   const filteredProjects = useMemo(() => {
     return projects.filter((p) => {
       const statusMatch = statusFilter ? p.status === statusFilter : true;
@@ -28,23 +26,19 @@ export default function ProjectList() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        {/* <h2 className={styles.title}>Project Dashboard</h2> */}
         <button className={styles.addBtn} onClick={() => setIsModalOpen(true)}>
-          ➕ Add Project
+          Add Project
         </button>
       </div>
 
-      {/* Filter component */}
       <SearchFilter setSearchParams={setSearchParams} />
 
-      {/* Project list */}
       <div className={styles.grid}>
         {filteredProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
 
-      {/* Placeholder modal */}
       {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}
     </div>
   );
