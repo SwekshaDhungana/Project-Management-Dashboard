@@ -18,18 +18,18 @@ export default class Modal extends Component {
   }
 
   componentDidMount() {
-    // Focus first input when modal opens
+    
     if (this.firstFieldRef.current) {
       this.firstFieldRef.current.focus();
     }
   }
 
-  // Handle input changes
+  
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  // Department-dependent status options
+  
   getStatusOptions() {
     if (this.state.department === "Engineering") {
       return ["active", "paused", "completed"];
@@ -39,7 +39,7 @@ export default class Modal extends Component {
     return [];
   }
 
-  // Validate inputs
+  
   validateForm() {
     const errors = {};
     if (!this.state.name.trim()) errors.name = "Project name is required";
@@ -57,12 +57,12 @@ export default class Modal extends Component {
     return Object.keys(errors).length === 0;
   }
 
-  // Submit handler
+  
   handleSubmit = (e) => {
     e.preventDefault();
     if (!this.validateForm()) return;
 
-    // Mock adding project
+   
     const newProject = {
       id: projects.length + 1,
       name: this.state.name,
@@ -81,9 +81,9 @@ export default class Modal extends Component {
       notifications: [],
     };
 
-    projects.push(newProject); // Just local update
+    projects.push(newProject); 
 
-    // Browser notification
+    
     if (Notification.permission === "granted") {
       new Notification(
         `✅ New project “${this.state.name}” created successfully!`
