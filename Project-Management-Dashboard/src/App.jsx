@@ -12,7 +12,6 @@ export default function App() {
         <Route path="/projects" element={<ProjectList />} />
         <Route path="/projects/:projectId" element={<ProjectDetail />} />
         <Route path="/notifications" element={<Notifications />} />
-        {/* Redirect any unknown route to home */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
