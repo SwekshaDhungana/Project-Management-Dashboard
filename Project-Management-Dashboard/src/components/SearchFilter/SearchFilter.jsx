@@ -10,7 +10,10 @@ export default class SearchFilter extends Component {
 
   handleChange = () => {
     const status = this.statusRef.current.value;
+    console.log(status, "status");
+
     const department = this.departmentRef.current.value;
+    console.log(department, "department");
 
     const params = {};
     if (status) params.status = status;

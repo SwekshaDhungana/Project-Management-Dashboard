@@ -18,18 +18,15 @@ export default class Modal extends Component {
   }
 
   componentDidMount() {
-    
     if (this.firstFieldRef.current) {
       this.firstFieldRef.current.focus();
     }
   }
 
-  
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  
   getStatusOptions() {
     if (this.state.department === "Engineering") {
       return ["active", "paused", "completed"];
@@ -39,7 +36,6 @@ export default class Modal extends Component {
     return [];
   }
 
-  
   validateForm() {
     const errors = {};
     if (!this.state.name.trim()) errors.name = "Project name is required";
@@ -57,12 +53,10 @@ export default class Modal extends Component {
     return Object.keys(errors).length === 0;
   }
 
-  
   handleSubmit = (e) => {
     e.preventDefault();
     if (!this.validateForm()) return;
 
-   
     const newProject = {
       id: projects.length + 1,
       name: this.state.name,
@@ -81,18 +75,17 @@ export default class Modal extends Component {
       notifications: [],
     };
 
-    projects.push(newProject); 
+    projects.push(newProject);
 
-    
     if (Notification.permission === "granted") {
       new Notification(
-        `✅ New project “${this.state.name}” created successfully!`
+        `New project “${this.state.name}” created successfully!`
       );
     } else if (Notification.permission !== "denied") {
       Notification.requestPermission().then((perm) => {
         if (perm === "granted") {
           new Notification(
-            `✅ New project “${this.state.name}” created successfully!`
+            `New project “${this.state.name}” created successfully!`
           );
         }
       });
