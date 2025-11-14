@@ -1,4 +1,4 @@
-export const projects = [
+export const defaultProjects = [
   {
     id: 1,
     name: "Project Orion",
@@ -120,3 +120,34 @@ export const projects = [
     notifications: [],
   },
 ];
+
+// export function getProjects() {
+//   const saved = localStorage.getItem("projects");
+//   if (saved) {
+//     try {
+//       return JSON.parse(saved);
+//     } catch {
+//       return defaultProjects;
+//     }
+//   }
+//   return defaultProjects;
+// }
+export function getProjects() {
+  const saved = localStorage.getItem("projects");
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      return parsed.map((p) => ({
+        ...p,
+        documents: p.documents || [],
+      }));
+    } catch {
+      return defaultProjects;
+    }
+  }
+  return defaultProjects;
+}
+
+export function saveProjects(projects) {
+  localStorage.setItem("projects", JSON.stringify(projects));
+}

@@ -1,7 +1,8 @@
 .container {
   padding: 2rem;
-  background-color: #fff;
+  padding-top: 40px;
   min-height: 100vh;
+  background-color: #fefffa;
 }
 
 .title {
@@ -11,7 +12,7 @@
 }
 
 .ownerSection {
-  background: #f3f4f6;
+  background: #f7f6f4;
   padding: 1rem;
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
@@ -39,7 +40,7 @@ button {
 }
 
 button:hover {
-  background-color: #dc2626;
+  background-color: #ff7675;
 }
 
 .milestoneSection {
@@ -49,7 +50,7 @@ button:hover {
 }
 
 .milestoneCard {
-  background: #f9fafb;
+  background: #f1f1f1;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   padding: 1rem;
@@ -60,7 +61,7 @@ button:hover {
   border-radius: 0.4rem;
   padding: 1rem;
   margin-top: 1rem;
-  background: #ffffff;
+  background: #fefffa;
 }
 
 .taskHeader {
@@ -78,11 +79,11 @@ button:hover {
 }
 
 .done {
-  background-color: #10b981;
+  background-color: #00b894;
 }
 
 .inProgress {
-  background-color: #3b82f6;
+  background-color: #74b9ff;
 }
 
 .assignees ul,
@@ -96,17 +97,17 @@ button:hover {
   padding: 0.4rem 0.8rem;
   border-radius: 0.4rem;
   border: none;
-  background-color: #2563eb;
+  background-color: #6c63ff;
   color: white;
   cursor: pointer;
 }
 
 .completeBtn:hover {
-  background-color: #1d4ed8;
+  background-color: #5848d2;
 }
 
 .noTasks {
-  color: #6b7280;
+  color: #636e72;
   font-style: italic;
 }
 
@@ -115,4 +116,41 @@ button:hover {
   color: #b91c1c;
   font-size: 1.2rem;
   margin-top: 3rem;
+}
+
+.docs {
+  margin-top: 2rem;
+  background-color: #fefffa;
+  padding: 1rem;
+  border-radius: 0.6rem;
+}
+
+.docList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.docItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f3f4f6;
+  padding: 0.6rem 1rem;
+  border-radius: 0.4rem;
+}
+
+.viewBtn {
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.viewBtn:hover {
+  background-color: #5848d2;
 }

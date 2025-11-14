@@ -1,14 +1,23 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import { useState, useMemo } from "react";
-import { projects } from "../../data/projects";
+import { getProjects, saveProjects } from "../../data/projects";
+import { useNotifications } from "../../context/NotificationContext";
 import styles from "./ProjectDetail.module.css";
+import DocumentViewer from "../../components/DocumentViewer/DocumentViewer";
+import BackButton from "../../components/BackButton/BackButton";
 
 export default function ProjectDetail() {
   const { projectId } = useParams();
+  const [openDoc, setOpenDoc] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const allProjects = getProjects();
   const [data, setData] = useState(() =>
-    projects.find((p) => p.id === Number(projectId))
+    allProjects.find((p) => p.id === Number(projectId))
   );
+  console.log("Loaded project:", data);
+
+  const { addNotification } = useNotifications();
 
   const statusFilter = searchParams.get("status");
   const tagFilter = searchParams.get("tag");
@@ -39,7 +48,13 @@ export default function ProjectDetail() {
       return m;
     });
 
-    setData({ ...data, milestones: updatedMilestones });
+    const updatedProject = { ...data, milestones: updatedMilestones };
+    setData(updatedProject);
+
+    const updatedAll = allProjects.map((p) =>
+      p.id === updatedProject.id ? updatedProject : p
+    );
+    saveProjects(updatedAll);
 
     const task = data.milestones
       .flatMap((m) => m.tasks)
@@ -47,6 +62,7 @@ export default function ProjectDetail() {
 
     if (task) {
       const message = `Task "${task.title}" marked completed`;
+
       if (Notification.permission === "granted") {
         new Notification(message);
       } else if (Notification.permission !== "denied") {
@@ -54,12 +70,24 @@ export default function ProjectDetail() {
           if (perm === "granted") new Notification(message);
         });
       }
+
+      addNotification({
+        id: Date.now().toString(),
+        message,
+        type: "task",
+        ref: { projectId: Number(projectId) },
+        seen: false,
+        projectName: data.name,
+      });
+
       alert(message);
     }
   }
+  console.log(data.documents, "documents");
 
   return (
     <div className={styles.container}>
+      <BackButton />
       <h2 className={styles.title}>{data.name}</h2>
 
       <section className={styles.ownerSection}>
@@ -183,6 +211,95 @@ export default function ProjectDetail() {
           </div>
         ))}
       </section>
+
+      {/* {data.document && (
+        <div className={styles.docs}>
+          <h3>Project Document</h3>
+          <button
+            className={styles.viewBtn}
+            onClick={() =>
+              setOpenDoc({
+                name: data.document.name,
+                url: data.document.url,
+                type: data.document.type,
+              })
+            }
+          >
+            View File
+          </button>
+        </div>
+      )} */}
+      {/* collect documents from all milestones */}
+      {/* {data.milestones &&
+        data.milestones.length > 0 &&
+        (() => {
+          const allDocs = data.milestones.flatMap((m) => m.documents || []);
+          return allDocs.length > 0 ? (
+            <div className={styles.docs}>
+              <h3>Project Documents</h3>
+              <div className={styles.docList}>
+                {allDocs.map((doc) => (
+                  <div key={doc.id} className={styles.docItem}>
+                    <span>{doc.name}</span>
+                    <button
+                      className={styles.viewBtn}
+                      onClick={() =>
+                        setOpenDoc({
+                          name: doc.name,
+                          url: doc.url,
+                          type: doc.type,
+                        })
+                      }
+                    >
+                      View
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null;
+        })()}
+
+      {openDoc && (
+        <DocumentViewer doc={openDoc} onClose={() => setOpenDoc(null)} />
+      )} */}
+      {/* collect both project-level and milestone-level documents */}
+      {(() => {
+        const milestoneDocs = data.milestones
+          ? data.milestones.flatMap((m) => m.documents || [])
+          : [];
+        const projectDocs = data.documents || [];
+        const allDocs = [...projectDocs, ...milestoneDocs];
+
+        return allDocs.length > 0 ? (
+          <div className={styles.docs}>
+            <h3>Project Documents</h3>
+            <div className={styles.docList}>
+              {allDocs.map((doc) => (
+                <div key={doc.id} className={styles.docItem}>
+                  <span>{doc.name}</span>
+                  <button
+                    className={styles.viewBtn}
+                    onClick={() =>
+                      setOpenDoc({
+                        name: doc.name,
+                        url: doc.url,
+                        type: doc.type,
+                      })
+                    }
+                  >
+                    View
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null;
+      })()}
+
+      {openDoc && (
+        <DocumentViewer doc={openDoc} onClose={() => setOpenDoc(null)} />
+      )}
     </div>
   );
 }

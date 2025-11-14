@@ -4,7 +4,10 @@ import styles from "./Navbar.module.css";
 export default function Navbar() {
   return (
     <nav className={styles.navbar}>
-      <h2 className={styles.logo}>Project Dashboard</h2>
+      <div className={styles.logo}>
+        <img src="/logo.png" alt="FlowTrack Logo" className={styles.logoImg} />
+      </div>
+
       <div className={styles.links}>
         <NavLink
           to="/"

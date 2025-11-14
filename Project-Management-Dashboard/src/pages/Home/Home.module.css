@@ -4,14 +4,14 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f8fafc;
+  background-color: #fefffa;
   text-align: center;
   padding: 2rem;
 }
 
 .title {
   font-size: 2rem;
-  color: #1f2937;
+  color: #2d3436;
   margin-bottom: 0.5rem;
 }
 
@@ -35,12 +35,12 @@
 }
 
 .btnPrimary {
-  background-color: #2563eb;
+  background-color: #6c63ff;
   color: #fff;
 }
 
 .btnPrimary:hover {
-  background-color: #1d4ed8;
+  background-color: #5848d2;
 }
 
 .btnSecondary {

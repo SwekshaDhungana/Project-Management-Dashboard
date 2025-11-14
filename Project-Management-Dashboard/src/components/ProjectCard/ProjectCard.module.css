@@ -1,5 +1,5 @@
 .card {
-  background-color: #ffffff;
+  background-color: #f8faec;
   border-radius: 0.6rem;
   padding: 1.2rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
@@ -29,16 +29,16 @@
 }
 
 .progress {
-  background-color: #10b981;
+  background-color: #00b894;
   height: 100%;
 }
 
 .budgetFill {
-  background-color: #3b82f6;
+  background-color: #74b9ff;
   height: 100%;
 }
 
 .progressText {
   font-size: 0.9rem;
-  color: #6b7280;
+  color: #636e72;
 }

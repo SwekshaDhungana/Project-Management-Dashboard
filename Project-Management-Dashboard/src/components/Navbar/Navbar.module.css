@@ -2,14 +2,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1e3a8a;
+  background-color: #9b8c50;
   padding: 1rem 2rem;
   color: #fff;
+  z-index: 50;
 }
 
 .logo {
-  font-size: 1.3rem;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.logoImg {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+@media (max-width: 768px) {
+  .logoImg {
+    height: 34px;
+  }
 }
 
 .links {
@@ -25,7 +42,7 @@
 }
 
 .link:hover {
-  color: #ffffff;
+  color: #faf7ff;
 }
 
 .active {

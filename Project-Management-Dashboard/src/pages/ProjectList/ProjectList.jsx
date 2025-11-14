@@ -1,14 +1,17 @@
 import { useSearchParams } from "react-router-dom";
 import { useState, useMemo } from "react";
-import { projects } from "../../data/projects";
+import { defaultProjects } from "../../data/projects";
 import SearchFilter from "../../components/SearchFilter/SearchFilter";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import styles from "./ProjectList.module.css";
 import Modal from "../../components/Modal/Modal";
+import { getProjects } from "../../data/projects";
+import BackButton from "../../components/BackButton/BackButton";
 
 export default function ProjectList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [projects, setProjects] = useState(getProjects());
 
   const statusFilter = searchParams.get("status");
   const departmentFilter = searchParams.get("department");
@@ -21,11 +24,14 @@ export default function ProjectList() {
         : true;
       return statusMatch && deptMatch;
     });
-  }, [statusFilter, departmentFilter]);
+  }, [projects, statusFilter, departmentFilter]);
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <BackButton />
+      <div className={styles.header}></div>
+
+      <div className={styles.addBtnContainer}>
         <button className={styles.addBtn} onClick={() => setIsModalOpen(true)}>
           Add Project
         </button>
@@ -39,7 +45,14 @@ export default function ProjectList() {
         ))}
       </div>
 
-      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && (
+        <Modal
+          onClose={() => {
+            setProjects(getProjects());
+            setIsModalOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 }

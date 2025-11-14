@@ -18,10 +18,14 @@ export default function ProjectCard({ project }) {
         })()
       : 0;
 
-  const spentPercent = Math.min(
-    Math.round((project.resources.spent / project.resources.budget) * 100),
-    100
-  );
+  // const spentPercent = Math.min(
+  //   Math.round((project.resources.spent / project.resources.budget) * 100),
+  //   100
+  // );
+  const spent = project.resources.spent || 0;
+  const budget = project.resources.budget || 0;
+  const spentPercent =
+    budget > 0 ? Math.min(Math.round((spent / budget) * 100), 100) : 0;
 
   return (
     <Link to={`/projects/${project.id}`} className={styles.card}>
@@ -44,13 +48,22 @@ export default function ProjectCard({ project }) {
       </div>
       <p className={styles.progressText}>Progress: {progress}%</p>
 
+      {/* <div className={styles.budgetBar}>
+        <div
+          className={styles.budgetFill}
+          style={{ width: `${spentPercent}%` }}
+        ></div>
+      </div>
+      <p className={styles.progressText}>Budget used: {spentPercent}%</p> */}
       <div className={styles.budgetBar}>
         <div
           className={styles.budgetFill}
           style={{ width: `${spentPercent}%` }}
         ></div>
       </div>
-      <p className={styles.progressText}>Budget used: {spentPercent}%</p>
+      <p className={styles.progressText}>
+        Budget: ${spent} / ${budget} ({spentPercent}% used)
+      </p>
     </Link>
   );
 }
