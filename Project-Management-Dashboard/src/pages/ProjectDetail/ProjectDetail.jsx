@@ -212,58 +212,6 @@ export default function ProjectDetail() {
         ))}
       </section>
 
-      {/* {data.document && (
-        <div className={styles.docs}>
-          <h3>Project Document</h3>
-          <button
-            className={styles.viewBtn}
-            onClick={() =>
-              setOpenDoc({
-                name: data.document.name,
-                url: data.document.url,
-                type: data.document.type,
-              })
-            }
-          >
-            View File
-          </button>
-        </div>
-      )} */}
-      {/* collect documents from all milestones */}
-      {/* {data.milestones &&
-        data.milestones.length > 0 &&
-        (() => {
-          const allDocs = data.milestones.flatMap((m) => m.documents || []);
-          return allDocs.length > 0 ? (
-            <div className={styles.docs}>
-              <h3>Project Documents</h3>
-              <div className={styles.docList}>
-                {allDocs.map((doc) => (
-                  <div key={doc.id} className={styles.docItem}>
-                    <span>{doc.name}</span>
-                    <button
-                      className={styles.viewBtn}
-                      onClick={() =>
-                        setOpenDoc({
-                          name: doc.name,
-                          url: doc.url,
-                          type: doc.type,
-                        })
-                      }
-                    >
-                      View
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null;
-        })()}
-
-      {openDoc && (
-        <DocumentViewer doc={openDoc} onClose={() => setOpenDoc(null)} />
-      )} */}
-      {/* collect both project-level and milestone-level documents */}
       {(() => {
         const milestoneDocs = data.milestones
           ? data.milestones.flatMap((m) => m.documents || [])

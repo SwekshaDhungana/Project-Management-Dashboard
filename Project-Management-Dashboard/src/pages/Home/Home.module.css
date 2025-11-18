@@ -1,24 +1,23 @@
 .container {
+  background-color: #f5f6fa;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #fefffa;
+  height: calc(100vh - 80px);
   text-align: center;
-  padding: 2rem;
 }
 
 .title {
-  font-size: 2rem;
-  color: #2d3436;
-  margin-bottom: 0.5rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #111827;
 }
 
 .subtitle {
   color: #4b5563;
   font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .links {
@@ -33,14 +32,12 @@
   border-radius: 0.4rem;
   font-weight: 500;
 }
-
 .btnPrimary {
-  background-color: #6c63ff;
-  color: #fff;
+  background-color: #6366f1;
 }
 
 .btnPrimary:hover {
-  background-color: #5848d2;
+  background-color: #4f46e5;
 }
 
 .btnSecondary {
